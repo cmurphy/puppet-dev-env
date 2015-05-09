@@ -1,0 +1,71 @@
+<domain type='{{engine}}'>
+  <name>{{name}}</name>
+  <memory unit='MiB'>{{memory}}</memory>
+  <vcpu>{{cpus}}</vcpu>
+  <os>
+    <type arch='{{arch}}'>hvm</type>
+    <boot dev='hd'/>
+    <bootmenu enable='no'/>
+  </os>
+  <features>
+    <acpi/>
+    <apic/>
+    <pae/>
+  </features>
+  <clock offset='utc'/>
+  <on_poweroff>destroy</on_poweroff>
+  <on_reboot>restart</on_reboot>
+  <on_crash>restart</on_crash>
+  <devices>
+    <emulator>{{emulator}}</emulator>
+    <disk type='file' device='disk'>
+      <driver name='qemu' type='qcow2' cache='unsafe'/>
+      <source file='{{imagefile}}'/>
+      <target dev='sda' bus='sata'/>
+      <address type='drive' controller='0' bus='0' unit='0'/>
+    </disk>
+    <controller type='ide' index='0'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x1'/>
+    </controller>
+    <input type='mouse' bus='ps2'/>
+    <graphics type='vnc' port='-1' autoport='yes'/>
+    <video>
+      <model type='cirrus' vram='9216' heads='1'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0'/>
+    </video>
+    <memballoon model='virtio'>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0'/>
+    </memballoon>
+    <interface type='network'>
+      <source network='default'/>
+      <model type='virtio'/>
+    </interface>
+    <interface type='network'>
+      <mac address='52:54:00:41:d1:0a'/>
+      <source network='allinone-0'/>
+      <model type='virtio'/>
+    </interface>
+    <interface type='network'>
+      <mac address='52:54:00:41:d1:0b'/>
+      <source network='allinone-1'/>
+      <model type='virtio'/>
+    </interface>
+    <interface type='network'>
+      <mac address='52:54:00:41:d1:0c'/>
+      <source network='allinone-2'/>
+      <model type='virtio'/>
+    </interface>
+    <interface type='network'>
+      <mac address='52:54:00:41:d1:0d'/>
+      <source network='allinone-3'/>
+      <model type='virtio'/>
+    </interface>
+    <serial type='pty'>
+      <target port='0'/>
+    </serial>
+    <console type='pty'>
+      <target type='serial' port='0'/>
+    </console>
+  </devices>
+</domain>
+

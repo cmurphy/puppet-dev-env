@@ -1,0 +1,18 @@
+<network connections='1'>
+  <name>allinone-2</name>
+  <uuid>56ce36a5-279b-4c18-ac59-a9ee2c15737d</uuid>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='allinone-virbr2' stp='on' delay='0'/>
+  <mac address='52:54:00:ee:52:3f'/>
+  <ip address='172.16.33.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='172.16.33.4' end='172.16.33.254'/>
+      <host mac='52:54:00:41:d1:0c' name='eth2' ip='172.16.33.4'/>
+    </dhcp>
+  </ip>
+</network>
+

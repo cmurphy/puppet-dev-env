@@ -1,0 +1,9 @@
+#!/bin/bash
+
+sshvm() {
+  local vm_name=$1
+  local vm_mac=$(virsh dumpxml $vm_name | grep -m 1 'mac address' | cut -d "'" -f 2)
+  local vm_ip=$(arp -n | grep $vm_mac | cut -d ' ' -f 1)
+  echo "SSHing to $vm_ip"
+  ssh root@${vm_ip} -i ~/.ssh/id_rsa_vm -o StrictHostKeyChecking=no
+}

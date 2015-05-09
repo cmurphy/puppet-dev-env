@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -x
+
+cat >$TMP_MOUNT_PATH/root/post-boot-ops <<EOF
+#!/bin/bash
+
+# Fix the statically defined interfaces
+for i in \$(seq 1 4) ; do
+  dhclient "eth\${i}"
+end
+
+# Run puppet to request cert
+
+puppet agent -t
+
+EOF
