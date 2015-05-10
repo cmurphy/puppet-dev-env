@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eux
+
 export DDD_WORKDIR=${DDD_WORKDIR:-"${HOME}/ddd-workdir"}
 export PATH=$PATH:$DDD_WORKDIR/tools/dib-dev-deploy/scripts
 export DDD_ELEMENTS_PATH=${DDD_ELEMENTS_PATH:-"${DDD_WORKDIR}/elements"}
@@ -20,7 +22,7 @@ ddd-pull-tools
 
 ### Build and install image
 
-image_path="${DDD_WORKDIR}/images/$DIB_HOSTNAME.qcow2"
+image_path="${DDD_WORKDIR}/images/${DIB_HOSTNAME}.qcow2"
 ddd-create-image local-config ubuntu hostname puppet post-boot -o $image_path
 ddd-define-vm $DIB_HOSTNAME $image_path
 virsh start $DIB_HOSTNAME
