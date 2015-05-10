@@ -7,6 +7,7 @@ export PATH=$PATH:$DDD_WORKDIR/tools/dib-dev-deploy/scripts
 export DDD_ELEMENTS_PATH=${DDD_ELEMENTS_PATH:-"${DDD_WORKDIR}/elements"}
 export DIB_HOSTNAME=${DIB_HOSTNAME:-'allinone'}
 export DDD_VM_TEMPLATE=${DDD_VM_TEMPLATE:-"${DDD_WORKDIR}/templates/allinone-vm.xml"}
+export DDD_VM_MEMORY=${DDD_VM_MEMORY:-8192}
 
 source "${DDD_WORKDIR}/scripts/sshvm"
 
