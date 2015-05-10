@@ -23,7 +23,7 @@ ddd-pull-tools
 ### Build and install image
 
 image_path="${DDD_WORKDIR}/images/${DIB_HOSTNAME}.qcow2"
-ddd-create-image local-config ubuntu hostname puppet post-boot -o $image_path
+ddd-create-image local-config ubuntu hostname puppet post-boot -o $image_path --image-size 40
 ddd-define-vm $DIB_HOSTNAME $image_path
 virsh start $DIB_HOSTNAME
 echo "Waiting for vm to boot"
