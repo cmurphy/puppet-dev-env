@@ -2,7 +2,7 @@
 
 set -x
 
-cat >$TMP_MOUNT_PATH/root/post-boot-ops <<EOF
+cat >/root/post-boot-ops <<EOF
 #!/bin/bash
 
 # Fix the statically defined interfaces
