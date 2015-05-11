@@ -2,6 +2,7 @@
 
 set -eux
 
+sudo true
 export DDD_WORKDIR=${DDD_WORKDIR:-"${HOME}/ddd-workdir"}
 export PATH=$PATH:$DDD_WORKDIR/tools/dib-dev-deploy/scripts
 export DDD_ELEMENTS_PATH=${DDD_ELEMENTS_PATH:-"${DDD_WORKDIR}/elements"}
