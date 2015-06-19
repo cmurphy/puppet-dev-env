@@ -5,11 +5,6 @@ set -x
 cat >/root/post-boot-ops <<EOF
 #!/bin/bash
 
-# Fix the statically defined interfaces
-for i in \$(seq 1 4) ; do
-  dhclient "eth\${i}"
-done
-
 # Run puppet to request cert
 
 puppet agent -t
