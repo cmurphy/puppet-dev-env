@@ -9,6 +9,7 @@ export DDD_ELEMENTS_PATH=${DDD_ELEMENTS_PATH:-"${DDD_WORKDIR}/elements"}
 export DIB_HOSTNAME=${DIB_HOSTNAME:-'allinone'}
 export DDD_VM_TEMPLATE=${DDD_VM_TEMPLATE:-"${DDD_WORKDIR}/templates/allinone-vm.xml"}
 export DDD_VM_MEMORY=${DDD_VM_MEMORY:-8192}
+export DDD_VM_CPUS=${DDD_VM_CPUS:-2}
 
 source "${DDD_WORKDIR}/scripts/sshvm"
 
