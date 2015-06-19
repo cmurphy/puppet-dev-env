@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -eux
+
+sed -i -e '/\[main\]/a configtimeout=5m' /etc/puppet/puppet.conf
