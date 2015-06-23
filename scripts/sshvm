@@ -1,5 +1,11 @@
 #!/bin/bash
 
+ssh_cmd() {
+  local vm_ip=$1
+  shift
+  ssh root@${vm_ip} -i ~/.ssh/id_rsa_vm -o StrictHostKeyChecking=no "$*"
+}
+
 sshvm() {
   local vm_name=$1
   shift
@@ -8,9 +14,15 @@ sshvm() {
   local tries=2
   while [ $tries -ge 0 ] ; do
     if [ -n "$vm_ip" ] ; then
-      echo "SSHing to $vm_ip"
-      ssh root@${vm_ip} -i ~/.ssh/id_rsa_vm -o StrictHostKeyChecking=no "$*"
-      break
+      local error=$(ssh_cmd $vm_ip true 2>&1) # Check for connection refused and try again
+      if [[ ! $error =~ .*Connection\ refused.* ]] ; then
+        echo "SSHing to $vm_ip"
+        ssh_cmd $vm_ip "$*"
+        break
+      else
+        echo "SSH is not ready yet. Trying again in 5 seconds."
+        sleep 5
+      fi
     else
       if [ $tries -eq 0 ] ; then
         echo "Could not reach VM."
