@@ -1,8 +1,0 @@
-#!/bin/bash
-
-if [ -n "$DIB_HOSTNAME" ] ; then
-  echo $DIB_HOSTNAME > /etc/hostname
-else
-  echo "Must set DIB_HOSTNAME when using the hostname element."
-  exit 1
-fi

@@ -2,6 +2,12 @@
 
 set -eux
 
+set_hostname() {
+  local hostname=$1
+  sshvm $hostname "echo $hostname > /etc/hostname"
+  sshvm $hostname "hostname $hostname"
+}
+
 sudo true
 export DDD_WORKDIR=${DDD_WORKDIR:-"${HOME}/ddd-workdir"}
 export PATH=$PATH:$DDD_WORKDIR/tools/dib-dev-deploy/scripts
@@ -27,7 +33,8 @@ ddd-pull-tools
 ### Build and install image
 
 image_path="${DDD_WORKDIR}/images/${DIB_HOSTNAME}.qcow2"
-ddd-create-image $DIB_OS dhcp-all-interfaces local-config hostname puppet post-boot -o $image_path --image-size 40
+ddd-create-image $DIB_OS dhcp-all-interfaces local-config puppet post-boot -o $image_path --image-size 40
 ddd-define-vm $DIB_HOSTNAME $image_path
 virsh start $DIB_HOSTNAME
+set_hostname $DIB_HOSTNAME
 sshvm $DIB_HOSTNAME
