@@ -33,7 +33,7 @@ ddd-pull-tools
 ### Build and install image
 
 image_path="${DDD_WORKDIR}/images/${DIB_HOSTNAME}.qcow2"
-ddd-create-image $DIB_OS dhcp-all-interfaces local-config puppet post-boot -o $image_path --image-size 40
+ddd-create-image $DIB_OS dhcp-all-interfaces local-config puppet -o $image_path --image-size 40
 ddd-define-vm $DIB_HOSTNAME $image_path
 virsh start $DIB_HOSTNAME
 set_hostname $DIB_HOSTNAME
