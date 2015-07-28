@@ -6,6 +6,7 @@ set_hostname() {
   local hostname=$1
   sshvm $hostname "echo $hostname > /etc/hostname"
   sshvm $hostname "hostname $hostname"
+  sshvm $hostname "sed -i -e 's/localhost/localhost $hostname/' /etc/hosts"
 }
 
 sudo true
